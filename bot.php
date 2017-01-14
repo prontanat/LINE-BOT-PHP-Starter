@@ -17,7 +17,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
             // Build message to reply back
-			if($text == 'อากาศกรุงเทพ'){
+			if($text == 'weather bankok'){
 			$messages = [
 				'type' => 'text',
 				'text' => 'https://weather.com/en-GB/weather/today/l/THXX0002:1:TH'
