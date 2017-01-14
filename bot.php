@@ -16,14 +16,13 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
-			if($text == 'TEST'){
-							$messages = [
+            // Build message to reply back
+			if($text == 'อากาศกรุงเทพ'){
+			$messages = [
 				'type' => 'text',
-				'text' => 'HI POP'
+				'text' => 'https://weather.com/en-GB/weather/today/l/THXX0002:1:TH'
 			];
-			}
-			else{
-			// Build message to reply back
+			}else{
 			$messages = [
 				'type' => 'text',
 				'text' => 'HELLO POP TEST LINE BOT'
