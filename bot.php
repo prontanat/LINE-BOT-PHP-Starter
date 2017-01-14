@@ -19,28 +19,26 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 			if($text == '22'){
 
-		     $messages = [
-				'type' => 'image',
-				'image' => 'http://teen.mthai.com/app/uploads/2016/01/Children-Day-520x245.jpg'
-			];
-			$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
-				'replyToken' => $replyToken,
-				 new ImageMessageBuilder('http://teen.mthai.com/app/uploads/2016/01/Children-Day-520x245.jpg', 'http://teen.mthai.com/app/uploads/2016/01/Children-Day-520x245.jpg')
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$result = curl_exec($ch);
-			curl_close($ch);
-
-			echo $result . "\r\n";
+		     $mock = function ($testRunner, $httpMethod, $url, $data) {
+            /** @var \PHPUnit_Framework_TestCase $testRunner */
+            $testRunner->assertEquals('POST', $httpMethod);
+            $testRunner->assertEquals('https://api.line.me/v2/bot/message/reply', $url);
+            $testRunner->assertEquals('REPLY-TOKEN', $data['replyToken']);
+            $testRunner->assertEquals(1, count($data['messages']));
+            $testRunner->assertEquals(MessageType::IMAGE, $data['messages'][0]['type']);
+            $testRunner->assertEquals('http://teen.mthai.com/app/uploads/2016/01/Children-Day-520x245.jpg', $data['messages'][0]['originalContentUrl']);
+            $testRunner->assertEquals('https://example.com/image_preview.jpg', $data['messages'][0]['previewImageUrl']);
+            return ['status' => 200];
+        };
+		$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+        $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
+        $res = $bot->replyMessage(
+            'REPLY-TOKEN',
+            new ImageMessageBuilder('http://teen.mthai.com/app/uploads/2016/01/Children-Day-520x245.jpg', 'http://teen.mthai.com/app/uploads/2016/01/Children-Day-520x245.jpg')
+        );
+        $this->assertEquals(200, $res->getHTTPStatus());
+        $this->assertTrue($res->isSucceeded());
+        $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
 			}
 			else{
 			$messages = [
