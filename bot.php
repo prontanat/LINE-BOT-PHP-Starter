@@ -31,11 +31,12 @@ if (!is_null($events['events'])) {
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
+			
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => [$messages],
+				new ImageMessageBuilder('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg', 'https://image.winudf.com/45/31a37a10b29410/screen-2.jpg')
 			];
-			$post = json_encode($data);
+			$post = getJSONDecodedBody($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
 			$ch = curl_init($url);
