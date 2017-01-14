@@ -19,8 +19,8 @@ if (!is_null($events['events'])) {
             // Build message to reply back
 			if($text == 'weather bankok'){
 			$messages = [
-				'type' => 'text',
-				'text' => 'http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/'
+				'type' => 'MessageType',
+				'IMAGE' => 'https://image.winudf.com/45/31a37a10b29410/screen-2.jpg'
 			];
 			}else{
 			$messages = [
