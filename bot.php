@@ -30,7 +30,7 @@ if (!is_null($events['events'])) {
 			//	'replyToken' => $replyToken,
 			//	'messages' => [$messages],
 			//];
-			$post = json_encode($data);
+			$post = json_encode($response);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
 			$ch = curl_init($url);
