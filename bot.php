@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 			if($text == 'weather bankok'){
 			$messages = [
 				'type' => 'text',
-				'text' => 'hi pop'
+				'text' => 'http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/'
 			];
 			}else{
 			$messages = [
@@ -36,18 +36,12 @@ if (!is_null($events['events'])) {
 				'messages' => [$messages],
 			];
 			$post = json_encode($data);
-            $res = $bot->replyMessage(
-            'REPLY-TOKEN',
-            new ImageMessageBuilder('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg', 'https://image.winudf.com/45/31a37a10b29410/screen-2.jpg')
-        );
-
-
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $res);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
