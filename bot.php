@@ -14,7 +14,7 @@ class SendImageTest extends \PHPUnit_Framework_TestCase
             /** @var \PHPUnit_Framework_TestCase $testRunner */
             $testRunner->assertEquals('POST', $httpMethod);
             $testRunner->assertEquals('https://api.line.me/v2/bot/message/reply', $url);
-            $testRunner->assertEquals('REPLY-TOKEN', $data[$access_token]);
+            $testRunner->assertEquals('REPLY-TOKEN', $data['replyToken']);
             $testRunner->assertEquals(1, count($data['messages']));
             $testRunner->assertEquals(MessageType::IMAGE, $data['messages'][0]['type']);
             $testRunner->assertEquals('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg', $data['messages'][0]['originalContentUrl']);
@@ -22,10 +22,10 @@ class SendImageTest extends \PHPUnit_Framework_TestCase
             return ['status' => 200];
         };
         $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
-        $res = $bot->replyMessage(
-            'REPLY-TOKEN',
-            new ImageMessageBuilder('https://example.com/image.jpg', 'https://example.com/image_preview.jpg')
+        $res = $bot->replyMessage('REPLY-TOKEN',
+            new ImageMessageBuilder('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg')
         );
+		$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
         $this->assertEquals(200, $res->getHTTPStatus());
         $this->assertTrue($res->isSucceeded());
         $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
@@ -39,15 +39,15 @@ class SendImageTest extends \PHPUnit_Framework_TestCase
             $testRunner->assertEquals('DESTINATION', $data['to']);
             $testRunner->assertEquals(1, count($data['messages']));
             $testRunner->assertEquals(MessageType::IMAGE, $data['messages'][0]['type']);
-            $testRunner->assertEquals('https://example.com/image.jpg', $data['messages'][0]['originalContentUrl']);
-            $testRunner->assertEquals('https://example.com/image_preview.jpg', $data['messages'][0]['previewImageUrl']);
+            $testRunner->assertEquals('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg', $data['messages'][0]['originalContentUrl']);
+            $testRunner->assertEquals('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg', $data['messages'][0]['previewImageUrl']);
             return ['status' => 200];
         };
         $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
         $res = $bot->pushMessage(
             'DESTINATION',
-            new ImageMessageBuilder('https://example.com/image.jpg', 'https://example.com/image_preview.jpg')
-        );
+            new ImageMessageBuilder('https://image.winudf.com/45/31a37a10b29410/screen-2.jpg', 'https://image.winudf.com/45/31a37a10b29410/screen-2.jpg')
+        );        
         $this->assertEquals(200, $res->getHTTPStatus());
         $this->assertTrue($res->isSucceeded());
         $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
