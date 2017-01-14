@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 			if($text == 'weather bankok'){
 			$messages = [
 				'type' => 'text',
-				'text' => 'https://weather.com/en-GB/weather/today/l/THXX0002:1:TH'
+				'text' => 'http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/'.str_replace(' ', '%20', $text).'.json'); $result1 = curl_exec($ch1);
 			];
 			}else{
 			$messages = [
