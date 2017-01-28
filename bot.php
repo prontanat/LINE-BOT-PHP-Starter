@@ -1,16 +1,3 @@
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('<channel access token>');
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '<channel secret>']);
-
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-$response = $bot->pushMessage('<poprelates>', $textMessageBuilder);
-
-echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
-
-
-
-
-
-
 <?php
 $access_token = 'Ze/06tcuQR1WyYCGYxZ2EoNN4qi0uVcHyV2gBrxi+FH4lzlR5vIM8PyUsiClj60L4stTEmRpFzeQds5/KXP0MJlPe4FYx8W4gylvFfwlpYEwwv5hSsTq1l1vHfXhYt16moS/2piTTTElodTg9ffGzwdB04t89/1O/w1cDnyilFU=';
 
