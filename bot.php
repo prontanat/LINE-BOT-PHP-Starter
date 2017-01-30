@@ -24,8 +24,8 @@ if (!is_null($events['events'])) {
 			];
 			}else{
 			$messages = [
-				'type' => 'user',
-				'userId': 'poprelates'
+				'type' => 'text',
+				'text' => 'HELLO POP TEST LINE BOT'
 			];
 			}
 
