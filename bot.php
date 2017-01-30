@@ -25,7 +25,7 @@ if (!is_null($events['events'])) {
 			}else{
 			$messages = [
 				'type' => 'user',
-				'userId': "u1dc80e85608022822552f9b2b9a1cc2c"
+				'userId': 'u1dc80e85608022822552f9b2b9a1cc2c'
 			];
 			}
 
