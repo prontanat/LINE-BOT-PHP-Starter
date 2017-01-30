@@ -14,18 +14,3 @@ $yows = new YOWS($CHANNEL_SECRET, $CHANNEL_ACCESS_TOKEN, $json_input);
 
 echo $yows; 
 
-//if ($yows->type === "unfollow") {
- //   $yows->unRegister($yows->userid);
-
-//} elseif ($yows->type === "follow") {
-    $profile = $yows->getProfile($yows->userid);
-    echo $profile; 
-    //$yows->register($yows->userid);
-    //$yows->pushMessage($yows->userid, "登録ありがとうございます 􀄃􀆰3 hearts􏿿\n\n・田村ゆかり公式サイト\n・ファンクラブサイト\nの更新をお知らせ致します􀐂􀄝light bulb􏿿\n\nなお、当アカウントをブロックすることで利用の停止ができます 􀄃􀆐content􏿿");
-
-//} elseif ($yows->type === "follow" && $yows->checkRegister($yows->userid) === 1) {
-    //$yows->pushMessage($yows->userid, "既に登録済みです。");
-
-//} else {
-   //die();
-//}
