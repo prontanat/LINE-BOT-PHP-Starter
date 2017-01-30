@@ -12,5 +12,4 @@ $ACCESS_TOKEN_SECRET = "";
 $json_input = file_get_contents('php://input');
 $yows = new YOWS($CHANNEL_SECRET, $CHANNEL_ACCESS_TOKEN, $json_input);
 
-echo $yows; 
 
