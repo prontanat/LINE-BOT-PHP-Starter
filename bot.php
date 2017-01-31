@@ -1,73 +1,39 @@
-<? php 
-  // Set the account information. 
-  // LINE developers site of Channels> in Basic information 
-  allows you to configure the information that has been // described. 
-  $ ChannelId  = "1496607604"; // Channel ID 
-  $ ChannelSecret  = "85fccaff252454f5e7035093aa41e8c9"; // Channel Secret 
-  $ Mid  = "u1dc80e85608022822552f9b2b9a1cc2c"; // MID
+<?php
+$access_token = 'Ze/06tcuQR1WyYCGYxZ2EoNN4qi0uVcHyV2gBrxi+FH4lzlR5vIM8PyUsiClj60L4stTEmRpFzeQds5/KXP0MJlPe4FYx8W4gylvFfwlpYEwwv5hSsTq1l1vHfXhYt16moS/2piTTTElodTg9ffGzwdB04t89/1O/w1cDnyilFU=';
 
-  // Get the message (body part of POST request) sent from LINE. 
-  // The following JSON formatted character string will be sent. 
-  {// "Result": [ 
-  // { 
-  // · · · 
-  // "Content": { 
-  // "contentType": 1, 
-  // "From": "Uff2aec188e58752ee1fb0f9507c6529a", 
-  // "Text": "Hello, ! BOT API Server " 
-  // · · · 
-  //} 
-  //}, 
-  // · · · 
-  //]} 
-  $ RequestBodyString  =  file_get_contents ( ' Php: // Input ' ) ;
-   $ RequestBodyObject  = Json_decode ( $ RequestBodyString ) ;
-   $ RequestContent  =  $ RequestBodyObject -> Result { 0 } -> Content ;
-   $ RequestText  =  $ RequestContent -> text; // text has been transmitted from the user 
-  $ RequestFrom  =  $ RequestContent -> from; // send user of the MID 
-  $ contentType  =  $ RequestContent -> contentType; // data type (1 text)
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
+$events = json_decode($content, true);
+// Validate parsed JSON data
+if (!is_null($events['events'])) {
+	// Loop through each event
+	foreach ($events['events'] as $event) {
+			$text = $event['message']['text'];
+			$userid = $event['userid'];
+			$messages = [
+				'type' => 'text',
+				'text' => 'TESTTTTTTTTTTTTTTTTTTTT'
+			];			
+			$url = 'https://api.line.me/v2/bot/message/POST';
+			$data = [
+				'to' => $userid,
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-  // LINE header of the request to the API BOT 
-  $ Headers  =  Array ( 
-    " Content-Type: Application / json; Charset = UTF-8 ",
-    " X-Line-ChannelID: { $ channelId } ", // Channel ID 
-    " X-Line-ChannelSecret: { $ ChannelSecret } ", // Channel Secret 
-    " X-Line-Trusted-User-With-ACL: { $ Mid } ", // MID 
-  ) ;
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
 
-  // Text to return to the user. 
-  / / I definitely recommend boiling pot of Umakoshi. 
-  $ ResponseText  =  <<< EOM
-" { $ RequestText } It is". understood. In such a case, Umamoto noodle of Yamagoshi. Http : //Yamagoeudon.Com
-EOM;
-
-  // Create JSON data that will be passed to the user via the LINE BOT API. 
-  // to designate the MID of the response destination user in the form of an array. 
-  // toChannel, eventType specifies a fixed numeric value / character string. 
-  // contentType is 1 if returning text. 
-  // toType is 1 in case of a response to the user. 
-  // text specifies the text to return to the user. 
-  $ ResponseMessage  =  <<< EOM
-     { 
-      " To " : [ " { $ RequestFrom } " ] ,
-      " ToChannel " : 1383378250 ,
-      " EventType " : " 138311608800106203 ",
-      " Content " : { 
-        " contentType " : 1 ,
-        " ToType " : 1 ,
-        " Text " : " { $ responseText } "
-       } 
-    }
-EOM;
-
-  // LINE create and run a request to the API BOT 
-  $ Curl  =  curl_init ( ' Https://Trialbot-api.Line.Me/v1/events ' ) ;
-   curl_setopt ( $ Curl , CURLOPT_POST, True ) ;
-   curl_setopt ( $ Curl , CURLOPT_HTTPHEADER, $ Headers ) ;
-   curl_setopt ( $ Curl , CURLOPT_POSTFIELDS, $ ResponseMessage ) ;
-   curl_setopt ( $ Curl , CURLOPT_RETURNTRANSFER, True ) ;
-   specify a proxy URL of Fixie of // Heroku Addon. Details are described below. 
-  curl_setopt ( $ Curl , CURLOPT_HTTPPROXYTUNNEL, 1 ) ;
-   curl_setopt ( $ Curl , CURLOPT_PROXY, getenv ( ' FIXIE_URL ' )) ;
-   $ Output  =  Curl_exec ( $ Curl ) ;
- ?>
+			echo $result . "\r\n";
+		//}
+	}
+}
+echo "OK";
