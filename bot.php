@@ -10,15 +10,14 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 			$text = $event['message']['text'];
-			$userid = $event['source']['userId'];
-			$roomid = $event['message']['id'];
+			$groupId = $event['source']['groupId'];
 			$messages = [
 				'type' => 'text',
-				'text' => $roomid
+				'text' => $groupId
 			];			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
-				'to' => $roomid,
+				'type' => 'text',
 				'messages' => [$messages],
 			];
 			$post = json_encode($data);
