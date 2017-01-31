@@ -13,12 +13,12 @@ if (!is_null($events['events'])) {
 			$userid = $event['source']['userId'];
 			$messages = [
 				'type' => 'text',
-				'text' => 'TESTTTTTTTTTTTTTTTTTTTT'
+				'text' => $userid
 			];			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $userid,
-				'messages' =>  $userid,
+				'messages' => [$messages],
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
