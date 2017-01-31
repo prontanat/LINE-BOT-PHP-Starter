@@ -10,7 +10,7 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 			$text = $event['message']['text'];
-			$userid = $event['userid'];
+			$userid = $event['source']['userId'];
 			$messages = [
 				'type' => 'text',
 				'text' => 'TESTTTTTTTTTTTTTTTTTTTT'
