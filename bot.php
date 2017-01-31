@@ -17,8 +17,12 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
             // Build message to reply back
-			if($text == 'mid'){
-			$messages = $message->getFromMid();
+			if($text == 'uid'){
+		     $fromMid = $message->getFromMid();
+			$messages = [			
+				'type' => 'text',
+				'text' => $fromMid
+			];
 			}else{
 			$messages = [
 				'type' => 'text',
