@@ -15,7 +15,7 @@ if (!is_null($events['events'])) {
 				'type' => 'text',
 				'text' => 'TESTTTTTTTTTTTTTTTTTTTT'
 			];			
-			$url = 'https://api.line.me/v2/bot/message/POST';
+			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $userid,
 				'messages' => [$messages],
