@@ -15,10 +15,9 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-
+		    $fromMid = $message->getFromMid();
             // Build message to reply back
 			if($text == 'uid'){
-		     $fromMid = $message->getFromMid();
 			$messages = [			
 				'type' => 'text',
 				'text' => $fromMid
@@ -49,6 +48,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
+			echo $fromMid . "\r\n";
 		}
 	}
 }
