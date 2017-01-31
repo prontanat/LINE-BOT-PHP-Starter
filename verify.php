@@ -3,11 +3,6 @@ $access_token = 'Ze/06tcuQR1WyYCGYxZ2EoNN4qi0uVcHyV2gBrxi+FH4lzlR5vIM8PyUsiClj60
 
 $url = 'https://api.line.me/v1/oauth/verify';
 
- $messages = [
-			'type' => 'user',
-			'text' => 'poprelates'
-			];
-
 $headers = array('Authorization: Bearer ' . $access_token);
 
 $ch = curl_init($url);
