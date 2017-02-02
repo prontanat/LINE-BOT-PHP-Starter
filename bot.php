@@ -11,10 +11,20 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
 			$text = $event['message']['text'];
 			$userid = $event['source']['userId'];
+			$type = $event['type'];
+			if(type == 'follow'){
 			$messages = [
+				'type' => 'text',
+				'text' => 'follow'
+			];			
+			}else{
+
+				$messages = [
 				'type' => 'text',
 				'text' => $userid
 			];			
+			}
+
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $userid,
