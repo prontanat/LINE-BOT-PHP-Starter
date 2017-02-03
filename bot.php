@@ -17,7 +17,7 @@ if (!is_null($events['events'])) {
 				'type' => 'text',
 				'text' => $groupId
 			];			
-			}
+			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $groupId,
@@ -36,7 +36,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
-		//}
+		}
 	}
 }
 echo "OK";
