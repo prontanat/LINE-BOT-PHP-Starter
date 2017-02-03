@@ -16,7 +16,15 @@ if (!is_null($events['events'])) {
 			$messages = [
 				'type' => 'text',
 				'text' => $groupId
-			];			
+			];		
+			}
+			else if($text == '¢ÍPicture'){
+				$messages = [
+				'type' => 'image',
+				'originalContentUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer.jpg',
+		        'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
+			];		
+			}
 			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
@@ -36,7 +44,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
-		}
+		
 	}
 }
 echo "OK";
