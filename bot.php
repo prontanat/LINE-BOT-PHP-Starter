@@ -98,7 +98,7 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $groupId,
-				'originalContentUrl' => 'https://www.youtube.com/watch?v=1YZo0Fv1LaQ',
+				'originalContentUrl' => 'https://github.com/prontanat/LINE-BOT-PHP-Starter/blob/master/Banana_Song_-_Reverse_Version_-_YouTube.mp4',
 				'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
 			];
 			$post = json_encode($data);
