@@ -12,10 +12,12 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			$userid = $event['source']['userId'];
 			$groupId = $event['source']['groupId'];
+			if($text = 'Roomid'){
 			$messages = [
 				'type' => 'text',
 				'text' => $groupId
 			];			
+			}
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $groupId,
