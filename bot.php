@@ -89,16 +89,17 @@ if (!is_null($events['events'])) {
 
 			echo $result . "\r\n";
 		}
-		else if($text == 'template'){
+		else if($text == 'video'){
 			$messages = [
-			  'type' => 'template',
-			  'altText' => 'TEST TEMPLATE',  
+			  'type' => 'video',
+			  'text' => $groupId,
 			];
 			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $groupId,
-				'messages' => [$messages],
+				'originalContentUrl' => 'https://www.youtube.com/watch?v=1YZo0Fv1LaQ',
+				'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
