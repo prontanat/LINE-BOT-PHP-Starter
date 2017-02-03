@@ -14,9 +14,9 @@ if (!is_null($events['events'])) {
 			$groupId = $event['source']['groupId'];
 			if($text == 'sticker'){
 			$messages = [
-			  'type': 'sticker',
-			  'packageId': '1',
-			  'stickerId': '1'
+			  'type' => 'sticker',
+			  'packageId' => '1',
+			  'stickerId' => '1'
 			];
 			
 			$url = 'https://api.line.me/v2/bot/message/push';
