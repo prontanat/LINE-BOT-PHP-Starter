@@ -91,15 +91,15 @@ if (!is_null($events['events'])) {
 		}
 		else if($text == 'video'){
 			$messages = [
-			  'type' => 'video',
-			  'text' => $groupId,
+				'type' => 'video',
+				'originalContentUrl' => 'https://github.com/prontanat/LINE-BOT-PHP-Starter/blob/master/Banana_Song_-_Reverse_Version_-_YouTube.mp4',
+				'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
 			];
 			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
 				'to' => $groupId,
-				'originalContentUrl' => 'https://github.com/prontanat/LINE-BOT-PHP-Starter/blob/master/Banana_Song_-_Reverse_Version_-_YouTube.mp4',
-				'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
+				'messages' => [$messages],
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
