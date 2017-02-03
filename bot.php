@@ -12,12 +12,12 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			$userid = $event['source']['userId'];
 			$groupId = $event['source']['groupId'];
-			if($text == 'PICTURE'){
+			if($text == 'sticker'){
 			$messages = [
-			'type' => 'image',
-			'originalContentUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer.jpg',
-			'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
-			];			
+			  'type': 'sticker',
+			  'packageId': '1',
+			  'stickerId': '1'
+			];
 			
 			$url = 'https://api.line.me/v2/bot/message/push';
 			$data = [
