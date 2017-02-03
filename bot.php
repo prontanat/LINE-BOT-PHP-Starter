@@ -93,7 +93,7 @@ if (!is_null($events['events'])) {
 			$messages = [
 				'type' => 'video',
 				'originalContentUrl' => 'https://github.com/prontanat/LINE-BOT-PHP-Starter/blob/master/Banana_Song_-_Reverse_Version_-_YouTube.mp4',
-				'previewImageUrl' => 'https://raw.githubusercontent.com/kittinan/Sample-Line-Bot/master/images/beer_preview.jpg',
+				'previewImageUrl' => 'https://github.com/prontanat/LINE-BOT-PHP-Starter/blob/master/67662d7c1011ba6aef1d7de4e5e5f01a.jpg',
 			];
 			
 			$url = 'https://api.line.me/v2/bot/message/push';
